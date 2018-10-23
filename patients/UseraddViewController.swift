@@ -16,6 +16,11 @@ class UseraddViewController: UIViewController , UIPickerViewDelegate, UIPickerVi
     let userdata = Userdata()
     var moduserdata:Userdata! = nil //画面遷移
 
+    @IBOutlet weak var addButon: UIButton!
+    @IBOutlet weak var modButon: UIButton!
+    
+    
+    
     //名前テキストボックス
     @IBOutlet weak var nameTextField: UITextField!
     //年齢
@@ -24,30 +29,9 @@ class UseraddViewController: UIViewController , UIPickerViewDelegate, UIPickerVi
     @IBOutlet weak var sexTextField: UITextField!
     @IBOutlet weak var sexPickerView: UIPickerView!
     let sexdataList = ["男性","女性"]
-
-
+    //
     
-    //新規登録実行
-    @IBAction func useraddButton(_ sender: UIButton) {
-        print("登録実行")
-        let allusers = realm.objects(Userdata.self)
-        if allusers.count != 0 {
-            self.userdata.id = allusers.max(ofProperty: "id")! + 1
-        }
-        //let now = NSDate()
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy/MM/dd HH:mm:ss"
-        print(self.nameTextField.text!)
-        print(self.ageTextField.text!)
-        try! realm.write {
-            self.userdata.name = self.nameTextField.text!
-            self.userdata.age = Int(self.ageTextField.text!)!
-            //self.userdata.age = self.ageTextField.text!
-            self.userdata.sex = self.sexTextField.text!
-            self.realm.add(self.userdata, update: true)
-        }
-        print(Realm.Configuration.defaultConfiguration.fileURL!)
-    }
+
     
     //キャンセル
     @IBAction func cancelButton(_ sender: UIButton) {
@@ -61,22 +45,24 @@ class UseraddViewController: UIViewController , UIPickerViewDelegate, UIPickerVi
         //登録時
         if moduserdata == nil {
             //性別Picker用　Delegate設定
-            //sexPickerView.delegate = self
-            //sexPickerView.dataSource = self
             sexTextField.text = ""
+            addButon.isHidden = false //表示
+            modButon.isHidden = true //非表示
         }
         else{ //患者データ変更時
             self.nameTextField.text = moduserdata.name
             self.ageTextField.text = String(moduserdata.age)
             if moduserdata.sex == "男性" {
+                sexPickerView.selectRow(0, inComponent: 0, animated: true)
                 sexTextField.text = sexdataList[0]
             }
-            else{
+            else {
+                sexPickerView.selectRow(1, inComponent: 0, animated: true)
                 sexTextField.text = sexdataList[1]
             }
-
+            addButon.isHidden = true //非表示
+            modButon.isHidden = false //表示
         }
-        
         
     }
 
@@ -111,18 +97,102 @@ class UseraddViewController: UIViewController , UIPickerViewDelegate, UIPickerVi
     //UIPickerViewのRowが選択された時の挙動
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         print("\(component) == \(row)")
-    
-         //print("ROW＝＝\(sexdataList[row])")
-        if moduserdata.sex == "男性" {
-            sexTextField.text = sexdataList[0]
-        }
-        else{
-            sexTextField.text = sexdataList[1]
-        }
         sexTextField.text = sexdataList[row]
-        
     }
     //---------------------------------------------------------------------
+    func viewAlertUser(sts: Int){
+        var msg = ""
+        var ngword = "NG!入力確認"
+        switch sts {
+        case 1 : msg = "名前が空白です"; break
+        case 2 : msg = "性別を選択してください"; break
+        case 3 : msg = "年程が空白です"; break
+        case 4 : msg = "変更実行しました"; break
+        case 5 : msg = "削除実行しました"; break
+        default:
+            msg = "入力完了です"
+            ngword = "OK"
+            break;
+        }
+        let title = "ポップアップです"
+        let message = msg
+        let NGText = ngword
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+        let okayButton = UIAlertAction(title: NGText, style: UIAlertActionStyle.cancel, handler: nil)
+        alert.addAction(okayButton)
+        present(alert, animated: true, completion: nil)
+    }
+    
+    
+    //変更実行
+    @IBAction func usermodButon(_ sender: UIButton) {
+        print("ModUserdata === \(moduserdata)")
+        if self.nameTextField.text == "" {
+            viewAlertUser(sts: 1)
+        }
+        else if self.sexTextField.text == "" {
+            viewAlertUser(sts: 2)
+        }
+        else if self.ageTextField.text == "" {
+            viewAlertUser(sts: 3)
+        }
+        else{
+            try! realm.write {
+                print("入力内容は？？　\(self.nameTextField.text)")
+                self.moduserdata.name = self.nameTextField.text!
+                self.moduserdata.sex = self.sexTextField.text!
+                self.moduserdata.age = Int(self.ageTextField.text!)!
+                self.realm.add(self.moduserdata, update: true)
+            }
+             //ボタン変更など
+            self.nameTextField.text = ""
+            self.sexTextField.text = ""
+            self.ageTextField.text = String("")
+            addButon.isHidden = false //変更実行　有効化（非表示）
+            modButon.isHidden = true //変更実行　無効化（表示）
+            viewAlertUser(sts: 4)
+        }
+    }
+    
+    
+    
+    //新規登録実行
+    @IBAction func useraddButon(_ sender: UIButton) {
+        print("登録実行")
+        if self.nameTextField.text == "" {
+            viewAlertUser(sts: 1)
+        }
+        else if self.sexTextField.text == "" {
+            viewAlertUser(sts: 2)
+        }
+        else if self.ageTextField.text == "" {
+            viewAlertUser(sts: 3)
+        }
+        else{
+            let allusers = realm.objects(Userdata.self)
+            if allusers.count != 0 {
+                self.userdata.id = allusers.max(ofProperty: "id")! + 1
+            }
+            //let now = NSDate()
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy/MM/dd HH:mm:ss"
+            print(self.nameTextField.text!)
+            print(self.ageTextField.text!)
+            try! realm.write {
+                self.userdata.name = self.nameTextField.text!
+                self.userdata.age = Int(self.ageTextField.text!)!
+                self.userdata.sex = self.sexTextField.text!
+                self.realm.add(self.userdata, update: true)
+            }
+            //ボタン変更など
+            self.nameTextField.text = ""
+            self.sexTextField.text = ""
+            self.ageTextField.text = String("")
+            addButon.isHidden = true //　無効化（表示）
+            modButon.isHidden = false //有効化（非表示）
+            viewAlertUser(sts: 0)
+            print(Realm.Configuration.defaultConfiguration.fileURL!) //realmブラウザで見る場所
+        }
+    }
+} //end ClassuseraddViewController
 
-
-}

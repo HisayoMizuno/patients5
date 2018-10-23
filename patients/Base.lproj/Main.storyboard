@@ -447,8 +447,8 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="新規登録実行" backgroundImage="btn"/>
                                 <connections>
-                                    <action selector="useraddButton:" destination="wes-IB-yFU" eventType="touchUpInside" id="9sS-fy-iyb"/>
-                                    <segue destination="dbv-iB-8iD" kind="unwind" unwindAction="unwind:" id="RDf-Q1-rA4"/>
+                                    <action selector="useraddButon:" destination="wes-IB-yFU" eventType="touchUpInside" id="1hI-X5-tq6"/>
+                                    <segue destination="dbv-iB-8iD" kind="unwind" unwindAction="unwind:" id="uSr-Gw-dZj"/>
                                 </connections>
                             </button>
                             <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xIT-jF-VJh">
@@ -486,12 +486,23 @@
                                     <segue destination="dbv-iB-8iD" kind="unwind" unwindAction="unwind:" id="F1L-a6-mWt"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ffv-8X-XMy">
+                                <rect key="frame" x="37" y="390" width="300" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="変更実行" backgroundImage="btn"/>
+                                <connections>
+                                    <action selector="usermodButon:" destination="wes-IB-yFU" eventType="touchUpInside" id="4v9-M7-K4h"/>
+                                    <segue destination="dbv-iB-8iD" kind="unwind" unwindAction="unwind:" id="u8C-Zp-ClV"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="Ra6-wB-yNx"/>
                     </view>
                     <connections>
+                        <outlet property="addButon" destination="EaS-2e-ibI" id="dxn-ie-aoo"/>
                         <outlet property="ageTextField" destination="H3X-E3-X7c" id="Gy5-Mj-MpO"/>
+                        <outlet property="modButon" destination="ffv-8X-XMy" id="PtQ-7l-udz"/>
                         <outlet property="nameTextField" destination="awH-Bl-A7y" id="d81-zO-Pw7"/>
                         <outlet property="sexPickerView" destination="xIT-jF-VJh" id="Spx-Su-cE8"/>
                         <outlet property="sexTextField" destination="ANb-72-taa" id="mta-4u-m7g"/>

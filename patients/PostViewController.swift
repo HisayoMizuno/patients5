@@ -114,15 +114,12 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy/MM/dd HH:mm:ss"
         if self.weightTextField.text == "" {
-            print("NULLA")
             viewAlert(sts: 1)
         }
         else if self.bloodmaxTextField.text == "" {
-            print("NULLB")
             viewAlert(sts: 2)
         }
         else if self.bloodminTextField.text == "" {
-            print("NULLC")
             viewAlert(sts: 3)
         }
         else {
@@ -268,6 +265,9 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     @IBAction func unwind(_ segue: UIStoryboardSegue) {
         tableView.reloadData() //画面に戻った時、一覧を更新しておく
+        viewname.text = userdata.name
+        viewage.text = String(userdata.age)
+        viewsex.text = userdata.sex
     }
     //--------------------------------------------------------------------------------------------
     
