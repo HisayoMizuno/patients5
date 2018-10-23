@@ -122,7 +122,6 @@ class UseraddViewController: UIViewController , UIPickerViewDelegate, UIPickerVi
         sexTextField.text = sexdataList[row]
         
     }
-
     //---------------------------------------------------------------------
 
 
