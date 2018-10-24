@@ -194,5 +194,17 @@ class UseraddViewController: UIViewController , UIPickerViewDelegate, UIPickerVi
             print(Realm.Configuration.defaultConfiguration.fileURL!) //realmブラウザで見る場所
         }
     }
+    //患者の健康情報データ
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?){
+        if (segue.identifier=="BackSegue") {
+            let postViewController:PostViewController = segue.destination as! PostViewController
+            postViewController.userdata = userdata
+            postViewController.modalPresentationStyle = .overCurrentContext
+            postViewController.view.backgroundColor = UIColor(red:0.94, green:0.94, blue:0.96, alpha:0.9)
+        }
+    }
+    @IBAction func unwind(_ segue: UIStoryboardSegue) {
+    }
+    
 } //end ClassuseraddViewController
 

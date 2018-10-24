@@ -62,7 +62,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RMn-Q8-bOp">
-                                <rect key="frame" x="31" y="158" width="300" height="40"/>
+                                <rect key="frame" x="37" y="162" width="300" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="ログイン" backgroundImage="btn"/>
                                 <connections>
@@ -281,16 +281,6 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lgc-Db-2ee">
-                                <rect key="frame" x="39" y="313.5" width="297" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="L2W-Aj-fwM"/>
-                                </constraints>
-                                <state key="normal" title="変更実行" backgroundImage="btn"/>
-                                <connections>
-                                    <action selector="healthdataMod:" destination="qwZ-mx-VRu" eventType="touchUpInside" id="kT7-j9-kHY"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dBv-Od-czf">
                                 <rect key="frame" x="303" y="99" width="33" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -329,6 +319,16 @@
                                 <color key="textColor" red="0.092738859355449677" green="0.086264483630657196" blue="0.69890552759170532" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lgc-Db-2ee">
+                                <rect key="frame" x="39" y="313.5" width="297" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="L2W-Aj-fwM"/>
+                                </constraints>
+                                <state key="normal" title="変更実行" backgroundImage="btn"/>
+                                <connections>
+                                    <action selector="healthdataMod:" destination="qwZ-mx-VRu" eventType="touchUpInside" id="kT7-j9-kHY"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -396,7 +396,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y1W-fD-3s3" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="0P5-6A-7rA" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1782" y="-405"/>
+            <point key="canvasLocation" x="1815" y="-390"/>
         </scene>
         <!--Useradd View Controller-->
         <scene sceneID="MSY-NI-xGy">
@@ -487,12 +487,12 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ffv-8X-XMy">
-                                <rect key="frame" x="37" y="390" width="300" height="35"/>
+                                <rect key="frame" x="37" y="344" width="300" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="変更実行" backgroundImage="btn"/>
                                 <connections>
                                     <action selector="usermodButon:" destination="wes-IB-yFU" eventType="touchUpInside" id="4v9-M7-K4h"/>
-                                    <segue destination="dbv-iB-8iD" kind="unwind" unwindAction="unwind:" id="u8C-Zp-ClV"/>
+                                    <segue destination="dbv-iB-8iD" kind="unwind" unwindAction="unwind:" id="huf-hz-hCW"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -511,7 +511,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jPN-hA-FyX" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="dbv-iB-8iD" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1781.5999999999999" y="302.6986506746627"/>
+            <point key="canvasLocation" x="1782" y="372"/>
         </scene>
         <!--Setting View Controller-->
         <scene sceneID="2Iy-TN-hl7">

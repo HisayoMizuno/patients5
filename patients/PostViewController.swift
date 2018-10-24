@@ -16,56 +16,51 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var viewname: UILabel! //名前
     @IBOutlet weak var viewsex: UILabel! //性別
     @IBOutlet weak var viewage: UILabel! //年齢
-
-    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var addButon: UIButton!
     @IBOutlet weak var modButon: UIButton!
     
     let realm = try! Realm()
     var userdata:Userdata!  // 渡ってくる
+    var moduserdata:Userdata! //ユーザ変更実行時に渡ってくる
     let healthData = List<HealthData>()
     var uid = 0
     var healthdataArray: Results<HealthData>?
     var userdataArray: Results<Userdata>?
     var index = 0
 
-    // 入力画面から戻ってきた時に TableView を更新させる
+    //---画面が表示される直前---------------------------------------------
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tableView.reloadData()
     }
-    //------------------------------------------------
+    //---インスタンス化された直後（初回に一度のみ）----------------------------
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
-
         uid = userdata.id
         print("uid")
         healthdataArray = try! Realm().objects(HealthData.self).filter("nurseid == %@",uid).sorted(byKeyPath: "date", ascending: true)
-
         for a in healthdataArray! {
             print("nurse= \(a.nurseid) : weight= \(a.weight)")
         }
-        
         userdataArray = try! Realm().objects(Userdata.self).filter("id=%@",uid).sorted(byKeyPath: "date", ascending: false)
         for b in userdataArray! {
             print("uid= \(b.id) : name= \(b.name)")
         }
-        
+        //---
         viewname.text = userdata.name
         viewage.text = String(userdata.age)
         viewsex.text = userdata.sex
         modButon.isHidden = true //変更実行　無効化
-
     }
-    
+    //--------------------------------------------------------------------------
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    //--------------------------------------------------------------------------
 
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         print("count")
         //return (healthdataArray?.count)!
@@ -261,9 +256,22 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
 
-   
+    
     
     @IBAction func unwind(_ segue: UIStoryboardSegue) {
+        if segue.identifier == "BackSegue" {
+            print("BackSegueBackSegueBackSegueBackSegueBackSegueBackSegue")
+
+            viewname.text = userdata.name
+            viewage.text = String(userdata.age)
+            viewsex.text = userdata.sex
+            print("\(userdata)")
+            print("\(userdata.name)")
+        }
+        else{
+            print("その他その他その他その他その他その他")
+               print("\(userdata)")
+        }
         tableView.reloadData() //画面に戻った時、一覧を更新しておく
         viewname.text = userdata.name
         viewage.text = String(userdata.age)
