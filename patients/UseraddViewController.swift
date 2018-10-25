@@ -29,10 +29,9 @@ class UseraddViewController: UIViewController , UIPickerViewDelegate, UIPickerVi
     @IBOutlet weak var sexTextField: UITextField!
     @IBOutlet weak var sexPickerView: UIPickerView!
     let sexdataList = ["男性","女性"]
-    //
-    
 
-    
+
+   
     //キャンセル
     @IBAction func cancelButton(_ sender: UIButton) {
         //unwindowで戻る
@@ -123,6 +122,21 @@ class UseraddViewController: UIViewController , UIPickerViewDelegate, UIPickerVi
         present(alert, animated: true, completion: nil)
     }
     
+    //------------------------
+    override func viewWillDisappear(_ animated: Bool) {
+    //データ保持
+    let userDefaults = UserDefaults.standard
+    //データ保持
+    let str: String?  = userDefaults.object(forKey: "name") as? String
+    print("STR====\(moduserdata.name)")
+    var modtext = moduserdata.name
+    userDefaults.set(modtext, forKey: "name")
+    userDefaults.synchronize()
+    let aaa: String? = userDefaults.object(forKey: "name") as? String
+    print("unwind時の名前は？？？　\(aaa)")
+    }
+    //------------------------
+
     
     //変更実行
     @IBAction func usermodButon(_ sender: UIButton) {
@@ -138,13 +152,18 @@ class UseraddViewController: UIViewController , UIPickerViewDelegate, UIPickerVi
         }
         else{
             try! realm.write {
-                print("入力内容は？？　\(self.nameTextField.text)")
+                //print("入力内容は？？　\(self.nameTextField.text)")
                 self.moduserdata.name = self.nameTextField.text!
                 self.moduserdata.sex = self.sexTextField.text!
                 self.moduserdata.age = Int(self.ageTextField.text!)!
                 self.realm.add(self.moduserdata, update: true)
             }
-             //ボタン変更など
+
+            
+            
+            
+
+            //ボタン変更など
             self.nameTextField.text = ""
             self.sexTextField.text = ""
             self.ageTextField.text = String("")
@@ -195,6 +214,7 @@ class UseraddViewController: UIViewController , UIPickerViewDelegate, UIPickerVi
         }
     }
     //患者の健康情報データ
+    /*
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
         if (segue.identifier=="BackSegue") {
             let postViewController:PostViewController = segue.destination as! PostViewController
@@ -205,6 +225,13 @@ class UseraddViewController: UIViewController , UIPickerViewDelegate, UIPickerVi
     }
     @IBAction func unwind(_ segue: UIStoryboardSegue) {
     }
+    */
+    
+//遷移する直前
+//override func viewWillDisappear(_ animated: Bool) {
+
+    
+//}
     
 } //end ClassuseraddViewController
 

@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-class PostViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class PostViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
     @IBOutlet weak var weightTextField: UITextField! //体重
     @IBOutlet weak var bloodmaxTextField: UITextField! //血圧上
     @IBOutlet weak var bloodminTextField: UITextField! //血圧下
@@ -28,11 +28,19 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
     var healthdataArray: Results<HealthData>?
     var userdataArray: Results<Userdata>?
     var index = 0
+    //データ保持インスタンス作成
+    let userDefaults = UserDefaults.standard
 
     //---画面が表示される直前---------------------------------------------
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tableView.reloadData()
+        let aftername: String? = userDefaults.object(forKey: "name") as? String
+        print("?????unwind時の名前は？？？　\(aftername)")
+        tableView.reloadData() //画面に戻った時、一覧を更新しておく
+        viewname.text = userdata.name
+        viewage.text = String(userdata.age)
+        viewsex.text = userdata.sex
     }
     //---インスタンス化された直後（初回に一度のみ）----------------------------
     override func viewDidLoad() {
@@ -54,6 +62,13 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
         viewage.text = String(userdata.age)
         viewsex.text = userdata.sex
         modButon.isHidden = true //変更実行　無効化
+        
+        //データ保持
+        userDefaults.set(userdata.name , forKey: "name")
+        userDefaults.synchronize()
+        let aftername: String? = userDefaults.object(forKey: "name") as? String
+        print("ViewDidload時の名前は viewDidLoad？？？　\(aftername)")
+
     }
     //--------------------------------------------------------------------------
     override func didReceiveMemoryWarning() {
@@ -259,6 +274,7 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     
     @IBAction func unwind(_ segue: UIStoryboardSegue) {
+        /*
         if segue.identifier == "BackSegue" {
             print("BackSegueBackSegueBackSegueBackSegueBackSegueBackSegue")
 
@@ -272,10 +288,13 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
             print("その他その他その他その他その他その他")
                print("\(userdata)")
         }
-        tableView.reloadData() //画面に戻った時、一覧を更新しておく
-        viewname.text = userdata.name
-        viewage.text = String(userdata.age)
-        viewsex.text = userdata.sex
+        */
+        //保持
+        //let aftername: String? = userDefaults.object(forKey: "name") as? String
+        //print("?????unwind時の名前は？？？　\(aftername)")
+
+        
+
     }
     //--------------------------------------------------------------------------------------------
     
