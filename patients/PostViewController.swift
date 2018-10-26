@@ -36,11 +36,14 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
         super.viewWillAppear(animated)
         tableView.reloadData()
         let aftername: String? = userDefaults.object(forKey: "name") as? String
-        print("?????unwind時の名前は？？？　\(aftername)")
+        print("############unwind時の名前は？？？　\(aftername)")
         tableView.reloadData() //画面に戻った時、一覧を更新しておく
         viewname.text = userdata.name
         viewage.text = String(userdata.age)
         viewsex.text = userdata.sex
+        
+
+
     }
     //---インスタンス化された直後（初回に一度のみ）----------------------------
     override func viewDidLoad() {
@@ -67,7 +70,7 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
         userDefaults.set(userdata.name , forKey: "name")
         userDefaults.synchronize()
         let aftername: String? = userDefaults.object(forKey: "name") as? String
-        print("ViewDidload時の名前は viewDidLoad？？？　\(aftername)")
+        print("+++++++++++ViewDidload時の名前は viewDidLoad？？？　\(aftername)")
 
     }
     //--------------------------------------------------------------------------
@@ -270,31 +273,19 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
             useraddViewController.view.backgroundColor = UIColor(red:0.94, green:0.94, blue:0.96, alpha:0.9)
         }
     }
+    
 
     
     
     @IBAction func unwind(_ segue: UIStoryboardSegue) {
-        /*
-        if segue.identifier == "BackSegue" {
-            print("BackSegueBackSegueBackSegueBackSegueBackSegueBackSegue")
-
-            viewname.text = userdata.name
-            viewage.text = String(userdata.age)
-            viewsex.text = userdata.sex
-            print("\(userdata)")
-            print("\(userdata.name)")
-        }
-        else{
-            print("その他その他その他その他その他その他")
-               print("\(userdata)")
-        }
-        */
         //保持
-        //let aftername: String? = userDefaults.object(forKey: "name") as? String
-        //print("?????unwind時の名前は？？？　\(aftername)")
-
-        
-
+        print("unwind") 
+        let aftername: String? = userDefaults.object(forKey: "name") as? String
+        print("?????unwind時の名前は？？？　\(String(describing: aftername))")
+        viewname.text = aftername
+        viewage.text = String(userdata.age)
+        viewsex.text = userdata.sex
+        tableView.reloadData() //画面に戻った時、一覧を更新しておく
     }
     //--------------------------------------------------------------------------------------------
     

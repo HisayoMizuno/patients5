@@ -213,6 +213,16 @@ class UseraddViewController: UIViewController , UIPickerViewDelegate, UIPickerVi
             print(Realm.Configuration.defaultConfiguration.fileURL!) //realmブラウザで見る場所
         }
     }
+    //データ保持「検査情報ページ」へ戻るための処理
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        print("prepare")
+        //データ保持
+        let userDefaults = UserDefaults.standard
+        let modtext = self.nameTextField.text!
+        print("STR====\(modtext)")
+        userDefaults.set(modtext, forKey: "name")
+        userDefaults.synchronize()
+    }
     //患者の健康情報データ
     /*
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
