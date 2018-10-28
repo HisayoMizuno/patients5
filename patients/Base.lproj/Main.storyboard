@@ -320,7 +320,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lgc-Db-2ee">
-                                <rect key="frame" x="39" y="313.5" width="297" height="40"/>
+                                <rect key="frame" x="39" y="313" width="297" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="L2W-Aj-fwM"/>
                                 </constraints>
@@ -443,9 +443,9 @@
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EaS-2e-ibI">
-                                <rect key="frame" x="37" y="342" width="300" height="40"/>
+                                <rect key="frame" x="283" y="43" width="88" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="新規登録実行" backgroundImage="btn"/>
+                                <state key="normal" title="新規登録実行"/>
                                 <connections>
                                     <action selector="useraddButon:" destination="wes-IB-yFU" eventType="touchUpInside" id="1hI-X5-tq6"/>
                                     <segue destination="dbv-iB-8iD" kind="unwind" unwindAction="unwind:" id="uSr-Gw-dZj"/>
@@ -469,14 +469,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8uB-nt-yHv">
-                                <rect key="frame" x="325" y="49" width="50" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="&lt;&lt;完了"/>
-                                <connections>
-                                    <segue destination="dbv-iB-8iD" kind="unwind" unwindAction="unwind:" id="AHV-GZ-IWS"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CLF-tQ-ncp">
                                 <rect key="frame" x="0.0" y="44" width="107" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -487,12 +479,12 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ffv-8X-XMy">
-                                <rect key="frame" x="37" y="344" width="300" height="35"/>
+                                <rect key="frame" x="273" y="38" width="98" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="変更実行" backgroundImage="btn"/>
+                                <state key="normal" title="変更実行"/>
                                 <connections>
                                     <action selector="usermodButon:" destination="wes-IB-yFU" eventType="touchUpInside" id="4v9-M7-K4h"/>
-                                    <segue destination="dbv-iB-8iD" kind="unwind" unwindAction="unwind:" id="huf-hz-hCW"/>
+                                    <segue destination="dbv-iB-8iD" kind="unwind" identifier="usermodBack" unwindAction="unwind:" id="huf-hz-hCW"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -511,7 +503,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jPN-hA-FyX" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="dbv-iB-8iD" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1782" y="372"/>
+            <point key="canvasLocation" x="1781.5999999999999" y="371.96401799100454"/>
         </scene>
         <!--Setting View Controller-->
         <scene sceneID="2Iy-TN-hl7">

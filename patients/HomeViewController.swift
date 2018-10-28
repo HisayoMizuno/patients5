@@ -35,6 +35,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         searchBar.delegate = self
         searchBar.placeholder = "検索"
         searchBar.setValue("キャンセル", forKey: "_cancelButtonText")
+        print("ここは　HomeViewController の　viewDidLoad です")
     }
 
     override func didReceiveMemoryWarning() {
@@ -60,10 +61,13 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     // データの数（＝セルの数）を返すメソッド
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print("ここは　HomeViewの　numbewOfRowsSection count部分です")
         return userdataArray.count
     }
     // 各セルの内容を返すメソッド
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        print("HomeView_numbreOfRowInSection aaaa")
+
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         //cellにセット
         let userdata = userdataArray[indexPath.row]
@@ -73,7 +77,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         formatter.dateFormat = "yyyy-MM-dd HH:mm"
         let dateString:String = formatter.string(from: userdata.date)
         cell.detailTextLabel?.text = dateString
-        print("aaaa")
         print(dateString)
         
         return cell

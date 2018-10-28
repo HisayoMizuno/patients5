@@ -279,6 +279,7 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     @IBAction func unwind(_ segue: UIStoryboardSegue) {
         //保持
+        
         print("unwind") 
         let aftername: String? = userDefaults.object(forKey: "name") as? String
         print("?????unwind時の名前は？？？　\(String(describing: aftername))")

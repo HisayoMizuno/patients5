@@ -124,7 +124,9 @@ class UseraddViewController: UIViewController , UIPickerViewDelegate, UIPickerVi
     
     //------------------------
     override func viewWillDisappear(_ animated: Bool) {
+    
     //データ保持
+    /*
     let userDefaults = UserDefaults.standard
     //データ保持
     let str: String?  = userDefaults.object(forKey: "name") as? String
@@ -134,6 +136,7 @@ class UseraddViewController: UIViewController , UIPickerViewDelegate, UIPickerVi
     userDefaults.synchronize()
     let aaa: String? = userDefaults.object(forKey: "name") as? String
     print("unwind時の名前は？？？　\(aaa)")
+    */
     }
     //------------------------
 
