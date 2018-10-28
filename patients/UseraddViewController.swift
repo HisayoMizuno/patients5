@@ -124,7 +124,8 @@ class UseraddViewController: UIViewController , UIPickerViewDelegate, UIPickerVi
     
     //------------------------
     override func viewWillDisappear(_ animated: Bool) {
-    
+
+        
     //データ保持
     /*
     let userDefaults = UserDefaults.standard

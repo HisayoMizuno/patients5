@@ -13,7 +13,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
-    
+
     // Realmインスタンスを取得する
     let realm = try! Realm()
     // DB内のタスクが格納されるリスト。
@@ -24,6 +24,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         super.viewWillAppear(animated)
         tableView.reloadData()
     }
+
     //画面が戻ってきた時
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -101,8 +102,17 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         let useraddViewController = self.storyboard?.instantiateViewController(withIdentifier: "Useradd") as! UseraddViewController
         useraddViewController.modalPresentationStyle = .overCurrentContext
         useraddViewController.view.backgroundColor = UIColor(red:0.94, green:0.94, blue:0.96, alpha:0.9)
-
+        //self.present(vc, animated: true, completion: nil)
+        //let vc = useraddViewController
+        // ここで遷移アニメーションを指定する
+        //  vc.modalTransitionStyle = .CoverVertical
+        //  vc.modalTransitionStyle = .CrossDissolve
+        //  vc.modalTransitionStyle = .FlipHorizontal
+       // vc.modalTransitionStyle = .partialCurl
+        
         present(useraddViewController, animated: true, completion: nil)
+
+    
     }
     //患者の健康情報データ
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
@@ -111,6 +121,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         postViewController.userdata = userdataArray[indexPath!.row]
         postViewController.modalPresentationStyle = .overCurrentContext
         postViewController.view.backgroundColor = UIColor(red:0.94, green:0.94, blue:0.96, alpha:0.9)
+        
+        
+        //self.navigationController?.pushViewController(postViewController, animated: true)
     }
     
     @IBAction func unwind(_ segue: UIStoryboardSegue) {
