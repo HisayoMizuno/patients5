@@ -96,7 +96,10 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
         formatter.dateFormat = "yyyy-MM-dd HH:mm"
         let dateString:String = formatter.string(from: (healthdata.date))
         cell.textLabel?.text = dateString
-        cell.detailTextLabel?.text = String(healthdata.weight)
+        var subtitle:String =  String(healthdata.weight) + "kg/ " + String(healthdata.bloodmax) + "mmHG/ "
+        subtitle += String(healthdata.bloodmin) + "mmHG"
+        //cell.detailTextLabel?.text = String(healthdata.weight)
+        cell.detailTextLabel?.text = subtitle
         return cell
         
     }
