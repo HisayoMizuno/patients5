@@ -206,8 +206,7 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
                 var a = userdata.healthData[index]
                 print(a)
                 print("aaaaaaa= \(a)")
-                //self.realm.delete(userdata.healthData[index])
-                //healthdataArray = try! Realm().objects(HealthData.self).filter("nurseid == %@",uid).sorted(byKeyPath: "date", ascending: true)
+
                 self.realm.delete(userdata.healthData[indexPath.row])
             }
         }
