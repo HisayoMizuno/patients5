@@ -152,12 +152,12 @@
                     <connections>
                         <outlet property="searchBar" destination="wuG-xW-JgP" id="Twg-iJ-dFo"/>
                         <outlet property="tableView" destination="7vp-ck-aLO" id="CWP-f4-TZG"/>
-                        <segue destination="qwZ-mx-VRu" kind="presentation" identifier="cellSegue" id="kxE-66-Gph"/>
+                        <segue destination="qwZ-mx-VRu" kind="show" identifier="cellSegue" id="kxE-66-Gph"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="m7H-Tf-a3b" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3874.4000000000001" y="97.601199400299862"/>
+            <point key="canvasLocation" x="4401" y="-66"/>
         </scene>
         <!--Post View Controller-->
         <scene sceneID="aVH-Jq-HIZ">
@@ -230,7 +230,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qd3-74-E0G">
-                                <rect key="frame" x="11" y="80" width="42" height="21"/>
+                                <rect key="frame" x="11" y="124" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -300,11 +300,11 @@
                                 <state key="normal" title="&gt;&gt;患者情報変更"/>
                                 <connections>
                                     <action selector="Usermod:" destination="qwZ-mx-VRu" eventType="touchUpInside" id="SRR-ZQ-G5S"/>
-                                    <segue destination="wes-IB-yFU" kind="show" identifier="UsermodSegue" id="9wV-UX-Wed"/>
+                                    <segue destination="wes-IB-yFU" kind="modal" identifier="UsermodSegue" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="9wV-UX-Wed"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="検査情報登録" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XyK-sH-vXJ">
-                                <rect key="frame" x="0.0" y="58" width="369" height="21"/>
+                                <rect key="frame" x="0.0" y="58" width="369" height="26"/>
                                 <color key="backgroundColor" white="0.75" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="xdc-in-tlu"/>
@@ -397,7 +397,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y1W-fD-3s3" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="0P5-6A-7rA" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="4631.1999999999998" y="-390.85457271364322"/>
+            <point key="canvasLocation" x="5570.3999999999996" y="-390.85457271364322"/>
         </scene>
         <!--Useradd View Controller-->
         <scene sceneID="MSY-NI-xGy">
@@ -504,7 +504,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jPN-hA-FyX" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="dbv-iB-8iD" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="4599.1999999999998" y="371.96401799100454"/>
+            <point key="canvasLocation" x="5538.3999999999996" y="371.96401799100454"/>
         </scene>
         <!--Setting View Controller-->
         <scene sceneID="2Iy-TN-hl7">
@@ -528,25 +528,26 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iCM-BJ-BUj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5391.1999999999998" y="95.802098950524751"/>
+            <point key="canvasLocation" x="6330.3999999999996" y="95.802098950524751"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="Lf3-fP-cCd">
+        <scene sceneID="Lml-Rc-YVT">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fBa-sL-Wl8" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="wtT-3F-hfH" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="jtP-xO-nHm">
+                    <navigationItem key="navigationItem" id="dpm-kR-5OU"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="on2-Yo-Cph">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="wQM-8I-YEj" kind="relationship" relationship="rootViewController" id="zjj-ki-Fbq"/>
+                        <segue destination="wQM-8I-YEj" kind="relationship" relationship="rootViewController" id="5VE-Kh-5ga"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="nwZ-rX-nMG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="q5V-Cv-HNk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2935.1999999999998" y="97.601199400299862"/>
+            <point key="canvasLocation" x="3706" y="-66"/>
         </scene>
     </scenes>
     <resources>

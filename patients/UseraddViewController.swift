@@ -124,8 +124,6 @@ class UseraddViewController: UIViewController , UIPickerViewDelegate, UIPickerVi
     
     //------------------------
     override func viewWillDisappear(_ animated: Bool) {
-
-        
     //データ保持
     /*
     let userDefaults = UserDefaults.standard
@@ -162,11 +160,6 @@ class UseraddViewController: UIViewController , UIPickerViewDelegate, UIPickerVi
                 self.moduserdata.age = Int(self.ageTextField.text!)!
                 self.realm.add(self.moduserdata, update: true)
             }
-
-            
-            
-            
-
             //ボタン変更など
             self.nameTextField.text = ""
             self.sexTextField.text = ""
