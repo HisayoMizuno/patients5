@@ -19,6 +19,7 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var addButon: UIButton!
     @IBOutlet weak var modButon: UIButton!
+    @IBOutlet weak var delBoton: UIButton!
     
     let realm = try! Realm()
     var userdata:Userdata!  // 渡ってくる
@@ -65,6 +66,8 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
         viewage.text = String(userdata.age)
         viewsex.text = userdata.sex
         modButon.isHidden = true //変更実行　無効化
+        delBoton.isHidden = true //削除実行　無効化
+
         
         //データ保持
         userDefaults.set(userdata.name , forKey: "name")
@@ -109,6 +112,7 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
         print("-------------")
         print(index)
         modButon.isHidden = false //有効化
+        delBoton.isHidden = false //有効化
         addButon.isHidden = true //無効化
         //let a = self.tableView.indexPathForSelectedRow
         //let healthdata = healthdataArray?[indexPath.row]
@@ -123,47 +127,7 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
         print(healthdata.weight)
     }
         
-    //変更実行時
-    @IBAction func healthdataMod(_ sender: Any) {
-        print("-------------")
-        print("選択されたindex = \(index)")
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy/MM/dd HH:mm:ss"
-        if self.weightTextField.text == "" {
-            viewAlert(sts: 1)
-        }
-        else if self.bloodmaxTextField.text == "" {
-            viewAlert(sts: 2)
-        }
-        else if self.bloodminTextField.text == "" {
-            viewAlert(sts: 3)
-        }
-        else {
-            var health = HealthData(value: [
-                "nurseid" : userdata.id ,
-                "weight"  : Int(self.weightTextField.text!),
-                "bloodmax": Int(self.bloodmaxTextField.text!),
-                "bloodmin": Int(self.bloodminTextField.text!)
-            ])
-            //変更処理
-            print("before: \(userdata.healthData)")
-            
-            try! realm.write {
-                userdata.healthData.replace(index: index, object: health)
-            }
-            
-            print("after: \(userdata.healthData)")
-            tableView.reloadData()
-            addButon.isHidden = false //変更実行　有効化
-            modButon.isHidden = true //変更実行　無効化
-            //入力項目をセットする
-            self.weightTextField.text = ""
-            self.bloodmaxTextField.text = ""
-            self.bloodminTextField.text = ""
-            viewAlert(sts: 0)
-            
-        }
-    }
+
     //登録実行
     @IBAction func healthdataAdd(_ sender: Any) {
         //viewAlert()
@@ -200,7 +164,106 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
             viewAlert(sts: 0)
         }
     }
+    //変更実行時------------------------------------------
+    @IBAction func healthdataMod(_ sender: Any) {
+        print("選択されたindex = \(index)")
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy/MM/dd HH:mm:ss"
+        if self.weightTextField.text == "" {
+            viewAlert(sts: 1)
+        }
+        else if self.bloodmaxTextField.text == "" {
+            viewAlert(sts: 2)
+        }
+        else if self.bloodminTextField.text == "" {
+            viewAlert(sts: 3)
+        }
+        else {
+            let Alert = UIAlertController(title: "アラート表示", message: "変更していいですか", preferredStyle:  UIAlertControllerStyle.actionSheet)
+            let ngAlert = UIAlertAction(title: "キャンセル", style: UIAlertActionStyle.cancel, handler:{
+                // ボタンが押された時の処理を書く（クロージャ実装）
+                (action: UIAlertAction!) -> Void in
+                print("今から変更キャンセル")
+                //入力項目をセットする
+                self.weightTextField.text = ""
+                self.bloodmaxTextField.text = ""
+                self.bloodminTextField.text = ""
+            })
+            let okAlert: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:{
+                (action: UIAlertAction!) -> Void in
+                print("今から変更実行処理")
+                
+                let health = HealthData(value: [
+                    "nurseid" : self.userdata.id ,
+                    "weight"  : Int(self.weightTextField.text!),
+                    "bloodmax": Int(self.bloodmaxTextField.text!),
+                    "bloodmin": Int(self.bloodminTextField.text!)
+                ])
+
+                //変更処理
+                print("after: \(self.userdata.healthData)")
+                print("before: \(self.userdata.healthData)")
+                try! self.realm.write {
+                    print("今から変更実行処理222")
+
+                    self.userdata.healthData.replace(index: self.index, object: health)
+                    print("今から変更実行処理333")
+
+                }
+                //入力項目をセットする
+                self.weightTextField.text = ""
+                self.bloodmaxTextField.text = ""
+                self.bloodminTextField.text = ""
+                self.addButon.isHidden = false //変更実行　有効化
+                self.modButon.isHidden = true //変更実行　無効化
+                self.tableView.reloadData()
+
+                self.viewAlert(sts: 0)
+            })
+            Alert.addAction(ngAlert)
+            Alert.addAction(okAlert)
+            // ④ Alertを表示
+            present(Alert, animated: true, completion: nil)
+
+        }
+    }
+    //削除------------------------------¡
+    @IBAction func healthdataDel(_ sender: Any) {
+        print("選択されたindex = \(index)")
+        
+        let Alert = UIAlertController(title: "アラート表示", message: "削除していいですか", preferredStyle:  UIAlertControllerStyle.actionSheet)
+        let ngAlert = UIAlertAction(title: "キャンセル", style: UIAlertActionStyle.cancel, handler:{
+            // ボタンが押された時の処理を書く（クロージャ実装）
+            (action: UIAlertAction!) -> Void in
+            print("今から削除キャンセル")
+        })
+        
+        let okAlert: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:{
+            (action: UIAlertAction!) -> Void in
+            print("今から削除実行処理")
+            try! self.realm.write {
+                self.realm.delete(self.userdata.healthData[self.index])
+            }
+          self.tableView.reloadData()
+           self.viewAlert(sts: 5)
+        })
+        Alert.addAction(ngAlert)
+        Alert.addAction(okAlert)
+        // ④ Alertを表示
+        present(Alert, animated: true, completion: nil)
+        
+        //---
+        self.addButon.isHidden = false //変更実行　有効化
+        self.modButon.isHidden = true //変更実行　無効化
+        //入力項目をセットする
+        self.weightTextField.text = ""
+        self.bloodmaxTextField.text = ""
+        self.bloodminTextField.text = ""
+    }
+    
+    
     // 削除
+    /*
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // データベースから削除する  // ←以降追加する
@@ -224,6 +287,7 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
         viewAlert(sts: 5)
         
     }
+    */
     //--------------------------
     func viewAlert(sts: Int) {
         var msg = ""
@@ -244,8 +308,11 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
         let message = msg
         let NGText = ngword
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
-        let okayButton = UIAlertAction(title: NGText, style: UIAlertActionStyle.cancel, handler: nil)
-        alert.addAction(okayButton)
+        let okButton = UIAlertAction(title: NGText, style: UIAlertActionStyle.cancel, handler: nil)
+        //let ngButton = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil)
+        alert.addAction(okButton)
+        //alert.addAction(ngButton)
+
         present(alert, animated: true, completion: nil)
         }
     //---------------------------------------

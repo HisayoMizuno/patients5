@@ -18,7 +18,7 @@ class UseraddViewController: UIViewController , UIPickerViewDelegate, UIPickerVi
 
     @IBOutlet weak var addButon: UIButton!
     @IBOutlet weak var modButon: UIButton!
-    
+    @IBOutlet weak var delButon: UIButton!
     
     
     //名前テキストボックス
@@ -138,7 +138,10 @@ class UseraddViewController: UIViewController , UIPickerViewDelegate, UIPickerVi
     */
     }
     //------------------------
-
+    //削除実行
+    @IBAction func userdelButon(_ sender: UIButton) {
+        
+    }
     
     //変更実行
     @IBAction func usermodButon(_ sender: UIButton) {
