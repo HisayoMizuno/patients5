@@ -124,26 +124,39 @@ class UseraddViewController: UIViewController , UIPickerViewDelegate, UIPickerVi
     
     //------------------------
     override func viewWillDisappear(_ animated: Bool) {
-    //データ保持
-    /*
-    let userDefaults = UserDefaults.standard
-    //データ保持
-    let str: String?  = userDefaults.object(forKey: "name") as? String
-    print("STR====\(moduserdata.name)")
-    var modtext = moduserdata.name
-    userDefaults.set(modtext, forKey: "name")
-    userDefaults.synchronize()
-    let aaa: String? = userDefaults.object(forKey: "name") as? String
-    print("unwind時の名前は？？？　\(aaa)")
-    */
-    }
-    //------------------------
-    //削除実行
-    @IBAction func userdelButon(_ sender: UIButton) {
-        
     }
     
-    //変更実行
+    
+    //--------------------------------------------------
+    //削除実行
+    @IBAction func userdelButon(_ sender: Any) {
+      print("DelUserDats AND HedalthData")
+         let Alert = UIAlertController(title: "アラート表示", message: "この患者情報を削除していいですか", preferredStyle:  UIAlertControllerStyle.actionSheet)
+        let ngAlert = UIAlertAction(title: "キャンセル", style: UIAlertActionStyle.cancel, handler:{
+            (action: UIAlertAction!) -> Void in
+            print("今からUSER削除キャンセル")
+        })
+        let okAlert: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:{
+            (action: UIAlertAction!) -> Void in
+            print("今から削除実行処理")
+            try! self.realm.write {
+                //self.realm.delete(self.userdata.healthData[self.index])
+                if self.moduserdata.healthData.count >= 1 {
+                    self.realm.delete(self.moduserdata.healthData)
+                    self.realm.delete(self.moduserdata)
+                    
+                }
+            }
+            self.viewAlertUser(sts: 5)
+        })
+        Alert.addAction(ngAlert)
+        Alert.addAction(okAlert)
+        //Alertを表示
+        present(Alert, animated: true, completion: nil)
+        
+    } //END DEL
+    
+    //変更実行-----------------------------------------------
     @IBAction func usermodButon(_ sender: UIButton) {
         print("ModUserdata === \(moduserdata)")
         if self.nameTextField.text == "" {
@@ -175,7 +188,7 @@ class UseraddViewController: UIViewController , UIPickerViewDelegate, UIPickerVi
     
     
     
-    //新規登録実行
+    //新規登録実行-----------------------------------------------
     @IBAction func useraddButon(_ sender: UIButton) {
         print("登録実行")
         if self.nameTextField.text == "" {
@@ -213,7 +226,7 @@ class UseraddViewController: UIViewController , UIPickerViewDelegate, UIPickerVi
             print(Realm.Configuration.defaultConfiguration.fileURL!) //realmブラウザで見る場所
         }
     }
-    //データ保持「検査情報ページ」へ戻るための処理
+    //データ保持「検査情報ページ」へ戻るための処理-----------------------------
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         print("prepare")
         //データ保持
@@ -223,25 +236,11 @@ class UseraddViewController: UIViewController , UIPickerViewDelegate, UIPickerVi
         userDefaults.set(modtext, forKey: "name")
         userDefaults.synchronize()
     }
-    //患者の健康情報データ
-    /*
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?){
-        if (segue.identifier=="BackSegue") {
-            let postViewController:PostViewController = segue.destination as! PostViewController
-            postViewController.userdata = userdata
-            postViewController.modalPresentationStyle = .overCurrentContext
-            postViewController.view.backgroundColor = UIColor(red:0.94, green:0.94, blue:0.96, alpha:0.9)
-        }
-    }
-    @IBAction func unwind(_ segue: UIStoryboardSegue) {
-    }
-    */
- //
-//遷移する直前
-//override func viewWillDisappear(_ animated: Bool) {
-
+    //一覧ページへ戻る----------------------------------------------------
     
-//}
+    @IBAction func BackUsrList(_ sender: Any) {
+        performSegue(withIdentifier: "UserToTop",sender: nil)
+    }
     
 } //end ClassuseraddViewController
 
