@@ -127,6 +127,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="qwZ-mx-VRu" kind="show" identifier="cellSegue" id="1IK-kh-1Lz"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -152,7 +155,6 @@
                     <connections>
                         <outlet property="searchBar" destination="wuG-xW-JgP" id="Twg-iJ-dFo"/>
                         <outlet property="tableView" destination="7vp-ck-aLO" id="CWP-f4-TZG"/>
-                        <segue destination="qwZ-mx-VRu" kind="show" identifier="cellSegue" id="kxE-66-Gph"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="m7H-Tf-a3b" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -482,15 +484,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CLF-tQ-ncp">
-                                <rect key="frame" x="0.0" y="38" width="107" height="40"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="&lt;&lt;キャンセル"/>
-                                <connections>
-                                    <action selector="cancelButton:" destination="wes-IB-yFU" eventType="touchUpInside" id="VIl-Pc-TOv"/>
-                                    <segue destination="dbv-iB-8iD" kind="unwind" unwindAction="unwind:" id="F1L-a6-mWt"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ffv-8X-XMy">
                                 <rect key="frame" x="273" y="38" width="98" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -509,12 +502,20 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fp4-LM-7kZ">
-                                <rect key="frame" x="16" y="63" width="146" height="30"/>
+                                <rect key="frame" x="0.0" y="57" width="146" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="&lt;&lt; 患者一覧へもどる"/>
                                 <connections>
-                                    <action selector="BackUsrList:" destination="wes-IB-yFU" eventType="touchUpInside" id="m0i-cQ-Nce"/>
-                                    <segue destination="wQM-8I-YEj" kind="show" identifier="UserToTop" id="nvI-0j-r52"/>
+                                    <action selector="BackUsrList:" destination="wes-IB-yFU" eventType="touchUpInside" id="pwm-eX-G58"/>
+                                    <segue destination="wQM-8I-YEj" kind="show" identifier="UserToTop" id="eTU-6Z-njg"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CLF-tQ-ncp">
+                                <rect key="frame" x="0.0" y="43" width="107" height="26"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="&lt;&lt;キャンセル"/>
+                                <connections>
+                                    <segue destination="dbv-iB-8iD" kind="unwind" unwindAction="unwind:" id="otb-8J-R9z"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -524,6 +525,8 @@
                     <connections>
                         <outlet property="addButon" destination="EaS-2e-ibI" id="dxn-ie-aoo"/>
                         <outlet property="ageTextField" destination="H3X-E3-X7c" id="Gy5-Mj-MpO"/>
+                        <outlet property="bakButon" destination="Fp4-LM-7kZ" id="mbY-qM-814"/>
+                        <outlet property="canButon" destination="CLF-tQ-ncp" id="2nd-BM-nxg"/>
                         <outlet property="modButon" destination="ffv-8X-XMy" id="PtQ-7l-udz"/>
                         <outlet property="nameTextField" destination="awH-Bl-A7y" id="d81-zO-Pw7"/>
                         <outlet property="sexPickerView" destination="xIT-jF-VJh" id="Spx-Su-cE8"/>
@@ -564,6 +567,6 @@
         <image name="btn" width="300" height="40"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="nvI-0j-r52"/>
+        <segue reference="9wV-UX-Wed"/>
     </inferredMetricsTieBreakers>
 </document>

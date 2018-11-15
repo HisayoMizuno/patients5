@@ -95,8 +95,8 @@
 				D3395AEB2121A02800CF03D7 /* HomeViewController.swift */,
 				D3395AED2121A0A700CF03D7 /* PostViewController.swift */,
 				D3464D1F2121AE46005918FA /* SettingViewController.swift */,
-				D326419A2122FA80004E9059 /* Userdata.swift */,
 				D326419C21245C97004E9059 /* UseraddViewController.swift */,
+				D326419A2122FA80004E9059 /* Userdata.swift */,
 			);
 			path = patients;
 			sourceTree = "<group>";

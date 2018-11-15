@@ -73,6 +73,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         //cellにセット
         let userdata = userdataArray[indexPath.row]
         cell.textLabel?.text = userdata.name
+        //cell.accessoryType = UITableViewCellAccessoryType.checkmark
+        cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
         
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd HH:mm"

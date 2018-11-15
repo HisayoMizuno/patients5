@@ -90,6 +90,7 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell2", for: indexPath)
+        cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
         let uid = userdata.id
         //cellにセット
         //let healthdata = healthdataArray?[indexPath.row]

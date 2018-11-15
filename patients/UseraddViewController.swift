@@ -20,6 +20,8 @@ class UseraddViewController: UIViewController , UIPickerViewDelegate, UIPickerVi
     @IBOutlet weak var modButon: UIButton!
     @IBOutlet weak var delButon: UIButton!
     
+    @IBOutlet weak var canButon: UIButton! //キャンセル
+    @IBOutlet weak var bakButon: UIButton! //一覧へ戻る
     
     //名前テキストボックス
     @IBOutlet weak var nameTextField: UITextField!
@@ -47,6 +49,8 @@ class UseraddViewController: UIViewController , UIPickerViewDelegate, UIPickerVi
             sexTextField.text = ""
             addButon.isHidden = false //表示
             modButon.isHidden = true //非表示
+            bakButon.isHidden = true //View
+            canButon.isHidden = false //Hidden
         }
         else{ //患者データ変更時
             self.nameTextField.text = moduserdata.name
@@ -61,6 +65,8 @@ class UseraddViewController: UIViewController , UIPickerViewDelegate, UIPickerVi
             }
             addButon.isHidden = true //非表示
             modButon.isHidden = false //表示
+            bakButon.isHidden = true //View
+            canButon.isHidden = false //Hidden
         }
         
     }
@@ -131,6 +137,8 @@ class UseraddViewController: UIViewController , UIPickerViewDelegate, UIPickerVi
     //削除実行
     @IBAction func userdelButon(_ sender: Any) {
       print("DelUserDats AND HedalthData")
+        bakButon.isHidden = false //View
+        canButon.isHidden = true  //Hidden
          let Alert = UIAlertController(title: "アラート表示", message: "この患者情報を削除していいですか", preferredStyle:  UIAlertControllerStyle.actionSheet)
         let ngAlert = UIAlertAction(title: "キャンセル", style: UIAlertActionStyle.cancel, handler:{
             (action: UIAlertAction!) -> Void in
@@ -147,6 +155,9 @@ class UseraddViewController: UIViewController , UIPickerViewDelegate, UIPickerVi
                     
                 }
             }
+            self.nameTextField.text = ""
+            self.sexTextField.text = ""
+            self.ageTextField.text = String("")
             self.viewAlertUser(sts: 5)
         })
         Alert.addAction(ngAlert)
@@ -240,7 +251,8 @@ class UseraddViewController: UIViewController , UIPickerViewDelegate, UIPickerVi
     
     @IBAction func BackUsrList(_ sender: Any) {
         performSegue(withIdentifier: "UserToTop",sender: nil)
+
     }
-    
+
 } //end ClassuseraddViewController
 
